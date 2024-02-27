@@ -1,8 +1,14 @@
 from fastapi import HTTPException, status, APIRouter
+from fastapi.responses import RedirectResponse
 from ..logic.process_data import ProcessData
 from ..logic import book_recommender, docs
 
 router = APIRouter()
+
+
+@router.get('/')
+async def root():
+    return RedirectResponse('/docs', status_code=status.HTTP_302_FOUND)
 
 
 @router.get("/books")
